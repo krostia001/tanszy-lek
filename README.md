@@ -115,7 +115,13 @@ Najważniejsze techniki: ciężka praca (czyszczenie, łączenie zbiorów, grupo
 
 ## Dokumentacja
 
-Rejestr wszystkich dokumentów projektu: [`docs/README.md`](docs/README.md).
+Rejestr wszystkich dokumentów projektu z zasadami kontroli dokumentów (ISO 10013): [`docs/README.md`](docs/README.md). Najważniejsze:
+
+- [Raport końcowy](docs/raport-koncowy.md): cel, rezultaty, porównanie z planem, wpływ, wnioski
+- [Lessons learned](docs/lessons-learned.md): co zadziałało, co nie, co zrobilibyśmy inaczej, rekomendacje
+- [Opis danych i ich jakości](docs/dane.md): źródła, licencje, czyszczenie, łączenie, problemy w danych
+- [Architektura](docs/architektura.md): części systemu, API, decyzje projektowe
+- [Wydajność](docs/wydajnosc.md): pomiary przed i po optymalizacji, techniki, kompromisy
 
 ## Współtworzenie
 
@@ -123,4 +129,15 @@ Zgłoszenia błędów i propozycje zmian są mile widziane. Zobacz [`CONTRIBUTIN
 
 ## Licencja
 
-Kod jest udostępniony na licencji [MIT](LICENSE). Dane pochodzą z portalu dane.gov.pl i podlegają warunkom wykorzystywania określonym przez ich wydawców.
+Kod jest udostępniony na licencji [MIT](LICENSE). Rejestr Produktów Leczniczych jest udostępniany na dane.gov.pl na licencji CC BY 4.0 (źródło i datę danych podajemy w serwisie). Wykaz leków refundowanych to dokument urzędowy Ministerstwa Zdrowia.
+
+## Metryka dokumentu
+
+| Identyfikator | Wersja | Status | Autor | Data |
+|---|---|---|---|---|
+| TL-DOC-001 | 1.0 | zatwierdzony | krostia001 | 2026-11-18 |
+
+| Wersja | Data | Autor | Opis zmiany |
+|---|---|---|---|
+| 0.1 | 2026-11-17 | krostia001 | Pierwsza wersja: opis, źródła, uruchomienie |
+| 1.0 | 2026-11-18 | krostia001 | Ceny MZ, wyniki wydajności, dokumentacja, zmierzony czas uruchomienia w Dockerze |

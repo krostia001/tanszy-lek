@@ -16,6 +16,7 @@ Format oparty na [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/), a pro
 - Skrypt `scripts/make-fixtures.ts` i 33 testy na próbkach prawdziwych danych.
 - Pomiary wydajności: `bun run bench` (czas odpowiedzi, p50/p95) i `bun run lighthouse` (Lighthouse, profil mobilny). Wyniki przed i po optymalizacji w `docs/wydajnosc.md`.
 - `robots.txt`.
+- Dokumentacja: opis danych i ich jakości, architektura, raport końcowy (szkielet ISO 21513), lessons learned (PMI); metryka i historia zmian wg ISO 10013 we wszystkich dokumentach.
 
 ### Zmieniono
 
@@ -47,6 +48,14 @@ Format oparty na [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/), a pro
 - ESLint, sprawdzanie typów i CI w GitHub Actions.
 - Uruchamianie jedną komendą: `docker compose up`.
 - Pliki open source: README, LICENSE (MIT), CONTRIBUTING, CODE_OF_CONDUCT, szablony zgłoszeń i PR.
+
+## Metryka dokumentu
+
+| Identyfikator | Wersja | Status | Autor | Data |
+|---|---|---|---|---|
+| TL-DOC-004 | 1.0 | zatwierdzony | krostia001 | 2026-11-18 |
+
+Ten dokument sam jest historią zmian projektu; każda wersja projektu dopisuje w nim nową sekcję.
 
 [Unreleased]: ../../compare/v0.1.0...HEAD
 [0.1.0]: ../../releases/tag/v0.1.0

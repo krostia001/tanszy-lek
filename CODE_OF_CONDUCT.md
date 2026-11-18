@@ -33,3 +33,14 @@ Kodeks obowiązuje we wszystkich przestrzeniach projektu (repozytorium, zgłosze
 ## Źródło
 
 Kodeks jest oparty na [Contributor Covenant](https://www.contributor-covenant.org/pl/version/2/1/code_of_conduct/) w wersji 2.1.
+
+## Metryka dokumentu
+
+| Identyfikator | Wersja | Status | Autor | Data |
+|---|---|---|---|---|
+| TL-DOC-003 | 1.0 | zatwierdzony | krostia001 | 2026-11-18 |
+
+| Wersja | Data | Autor | Opis zmiany |
+|---|---|---|---|
+| 0.1 | 2026-11-17 | krostia001 | Pierwsza wersja |
+| 1.0 | 2026-11-18 | krostia001 | Zatwierdzenie bez zmian treści |

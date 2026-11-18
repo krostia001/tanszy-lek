@@ -50,3 +50,14 @@ Windows blokuje plik bazy otwarty przez działający serwer. Przed `bun run data
 ## Kodeks postępowania
 
 Uczestnicząc w projekcie, zobowiązujesz się przestrzegać [Kodeksu postępowania](CODE_OF_CONDUCT.md).
+
+## Metryka dokumentu
+
+| Identyfikator | Wersja | Status | Autor | Data |
+|---|---|---|---|---|
+| TL-DOC-002 | 1.0 | zatwierdzony | krostia001 | 2026-11-18 |
+
+| Wersja | Data | Autor | Opis zmiany |
+|---|---|---|---|
+| 0.1 | 2026-11-17 | krostia001 | Pierwsza wersja |
+| 1.0 | 2026-11-18 | krostia001 | Zatwierdzenie bez zmian treści |

@@ -3,10 +3,10 @@
 | Metryka | |
 |---|---|
 | Identyfikator | TL-DOC-010 |
-| Wersja | 0.1 |
-| Status | projekt |
+| Wersja | 1.0 |
+| Status | zatwierdzony |
 | Autor | krostia001 |
-| Data | 2026-11-17 |
+| Data | 2026-11-18 |
 
 ## Cel dokumentu
 
@@ -32,7 +32,7 @@ Punktem wyjścia jest zielony krzyż i szyld polskiej apteki, czyli coś, co ka�
 | `ink-200` | `#D3DED7` | linie podziału |
 | `#FFFFFF` | | tło |
 
-Biały tekst na `apteka-600` ma kontrast 4,8:1, a tekst `apteka-900` na białym ponad 12:1 (WCAG AA).
+Biały tekst na `apteka-600` ma kontrast 4,8:1, a tekst `apteka-900` na białym ponad 12:1 (WCAG AA). Dlatego cały tekst na zielonym pasie jest biały: jaśniejsze odcienie zieleni (`apteka-50`, `apteka-100`) miały tylko 4,4:1 i 3,9:1.
 
 ### Typografia
 
@@ -59,3 +59,4 @@ Kafelków ze statystykami w nagłówku, gradientów, identycznych kart z cieniem
 | Wersja | Data | Autor | Opis zmiany |
 |---|---|---|---|
 | 0.1 | 2026-11-17 | krostia001 | Pierwsza wersja: kierunek, tokeny, układ |
+| 1.0 | 2026-11-18 | krostia001 | Cena opakowania zamiast dopłaty, biały tekst na nagłówku (kontrast), interfejs bez biblioteki komponentów |
