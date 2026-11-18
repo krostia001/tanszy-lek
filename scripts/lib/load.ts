@@ -11,7 +11,7 @@ const sqlString = (value: string) => `'${value.replaceAll('\'', '\'\'')}'`
  *   05909990784721 ¦ Rp ¦ Skasowane ¦ 19693\n14 tabl.
  * Groups: 1 GTIN, 2 availability category, 3 "Skasowane" marker, 4 package id, 5 size.
  */
-const PACKAGE_REGEX = sqlString('([0-9]{8,14}) ¦ ([^¦\\n]+?) ¦ (Skasowane ¦ )?([0-9]+)\\n([^\\n]*)')
+const PACKAGE_REGEX = sqlString('([0-9]{8,14}) ¦ ([^¦\\r\\n]+?) ¦ (Skasowane ¦ )?([0-9]+)\\r?\\n([^\\r\\n]*)')
 
 /** Forms a pharmacist may swap without clinical significance (immediate-release oral solids). */
 const INTERCHANGEABLE_ORAL_FORMS = ['tabletki', 'tabletki powlekane', 'tabletki drażowane', 'kapsułki', 'kapsułki twarde']

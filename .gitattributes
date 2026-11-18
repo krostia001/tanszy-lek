@@ -1,0 +1,6 @@
+# Keep LF line endings on every system. The data pipeline parses line breaks inside
+# CSV fields, so a Windows checkout with CRLF would change the test data.
+* text=auto eol=lf
+
+# Binary test data
+*.xlsx binary
