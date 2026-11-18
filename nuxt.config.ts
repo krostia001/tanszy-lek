@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     duckdbPath: 'data/app.duckdb',
     public: {
       // Link to the public repository, shown in the footer (NUXT_PUBLIC_REPO_URL).
-      repoUrl: '',
+      repoUrl: 'https://github.com/krostia001/tanszy-lek',
     },
   },
   dir: { shared: 'src/shared' },

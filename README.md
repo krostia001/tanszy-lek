@@ -1,5 +1,8 @@
 # TańszyLek
 
+[![CI](https://github.com/krostia001/tanszy-lek/actions/workflows/ci.yml/badge.svg)](https://github.com/krostia001/tanszy-lek/actions/workflows/ci.yml)
+[![Licencja: MIT](https://img.shields.io/badge/licencja-MIT-green.svg)](LICENSE)
+
 Wyszukiwarka tańszych zamienników leków, zbudowana na otwartych danych z [dane.gov.pl](https://dane.gov.pl).
 
 > 🚧 Projekt w budowie (17–22.11.2026). Poniższe instrukcje uruchomienia już działają.
