@@ -1,0 +1,37 @@
+{
+  "name": "tanszy-lek",
+  "version": "0.1.0",
+  "description": "Wyszukiwarka tańszych zamienników leków oparta na otwartych danych z dane.gov.pl",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "data": "bun run data:fetch && bun run data:build",
+    "data:fetch": "bun scripts/fetch-data.ts",
+    "data:build": "bun scripts/build-db.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@duckdb/node-api": "^2.0.0-r.1"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.156",
+    "@nuxt/eslint": "^1.17.0",
+    "@nuxt/ui": "^4.12.2",
+    "@types/node": "^26.6.6",
+    "eslint": "^10.15.0",
+    "nuxt": "^4.6.4",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^6",
+    "vitest": "^5.1.0",
+    "vue": "^3.5.45",
+    "vue-tsc": "^3.3.14"
+  }
+}

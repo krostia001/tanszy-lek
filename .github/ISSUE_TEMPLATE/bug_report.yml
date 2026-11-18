@@ -1,0 +1,35 @@
+name: Błąd w aplikacji
+description: Coś nie działa lub działa inaczej, niż powinno.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Co się stało?
+      description: Opisz krótko błąd.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Jak odtworzyć błąd?
+      placeholder: |
+        1. Wejdź na stronę ...
+        2. Wpisz ...
+        3. Zobacz błąd
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Czego się spodziewano?
+  - type: input
+    id: environment
+    attributes:
+      label: Przeglądarka i urządzenie
+      placeholder: np. Chrome 142, Android 16
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Zrzuty ekranu
+      description: Opcjonalnie. Możesz przeciągnąć obraz tutaj.

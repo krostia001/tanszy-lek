@@ -1,0 +1,28 @@
+name: Błąd w danych
+description: Lek ma błędne informacje, brakuje zamiennika lub zamiennik jest nieprawidłowy.
+labels: [dane]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dane pochodzą z rejestrów publikowanych na [dane.gov.pl](https://dane.gov.pl).
+        Jeśli błąd jest w samym rejestrze, przekażemy go wydawcy danych.
+  - type: input
+    id: product
+    attributes:
+      label: Nazwa leku
+      placeholder: np. Ibuprofen 200 mg, tabletki
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Adres strony w aplikacji
+      placeholder: http://localhost:3000/...
+  - type: textarea
+    id: problem
+    attributes:
+      label: Co jest nie tak?
+      description: Co pokazuje aplikacja, a jak powinno być? Jeśli możesz, podaj źródło (np. ulotkę lub stronę rejestru).
+    validations:
+      required: true

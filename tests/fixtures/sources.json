@@ -1,0 +1,28 @@
+[
+  {
+    "key": "rpl",
+    "name": "Rejestr Produktów Leczniczych",
+    "publisher": "Centrum e-Zdrowia",
+    "datasetId": 397,
+    "resourceId": "65520",
+    "edition": "Wykaz produktów leczniczych. Plik w formacie csv.",
+    "dataDate": "2026-11-16",
+    "pageUrl": "https://dane.gov.pl/pl/dataset/397",
+    "url": "https://api.dane.gov.pl/resources/65520,wykaz-produktow-leczniczych-plik-w-formacie-csv/file",
+    "bytes": 17093885,
+    "downloadedAt": "2026-11-17T17:32:29.111Z"
+  },
+  {
+    "key": "mz",
+    "name": "Wykaz refundowanych leków",
+    "publisher": "Ministerstwo Zdrowia",
+    "datasetId": null,
+    "resourceId": null,
+    "edition": "obwieszczenie z 16.09.2026, obowiązuje od 1.10.2026",
+    "dataDate": null,
+    "pageUrl": "https://www.gov.pl/web/zdrowie/obwieszczenia-ministra-zdrowia-lista-lekow-refundowanych",
+    "url": "https://www.gov.pl/attachment/b199bf14-e4b8-49cc-99cf-d446c5e0a9d1",
+    "bytes": 901384,
+    "downloadedAt": "2026-11-17T17:32:29.432Z"
+  }
+]

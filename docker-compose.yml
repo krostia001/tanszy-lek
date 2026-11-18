@@ -1,0 +1,29 @@
+# One command: `docker compose up`
+#   1. "data" downloads the data from the dane.gov.pl API and builds the database
+#      (only on the first run; the result is kept in the "data" volume),
+#   2. "app" starts the website at http://localhost:3000.
+#
+# Refresh the data: `docker compose run --rm data bun run data && docker compose restart app`
+
+services:
+  data:
+    build: .
+    image: tanszy-lek:local
+    command: ["sh", "-c", "test -f data/app.duckdb || bun run data"]
+    volumes:
+      - data:/app/data
+
+  app:
+    build: .
+    image: tanszy-lek:local
+    depends_on:
+      data:
+        condition: service_completed_successfully
+    ports:
+      - "${PORT:-3000}:3000"
+    volumes:
+      - data:/app/data:ro
+    restart: unless-stopped
+
+volumes:
+  data:

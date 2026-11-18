@@ -1,0 +1,33 @@
+# Nuxt
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Dependencies
+node_modules
+
+# Data downloaded and built by scripts/ (reproducible with `bun run data`)
+data/
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+.claude
+.vscode/*
+!.vscode/extensions.json
+
+# Local env files (secrets never go to the repository)
+.env
+.env.*
+!.env.example
+
+# Test coverage
+coverage

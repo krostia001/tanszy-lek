@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "id": "52519",
+      "type": "resource",
+      "attributes": {
+        "title": "Link do strony Rejestru Produktów Leczniczych",
+        "format": "html",
+        "data_date": "2026-11-16",
+        "download_url": "",
+        "file_size": null
+      }
+    },
+    {
+      "id": "65522",
+      "type": "resource",
+      "attributes": {
+        "title": "Wykaz produktów leczniczych. Plik w formacie XML.",
+        "format": "xml",
+        "data_date": "2026-11-16",
+        "download_url": "https://api.dane.gov.pl/resources/65522,wykaz-produktow-leczniczych-plik-w-formacie-xml/file",
+        "file_size": 74264322
+      }
+    },
+    {
+      "id": "65520",
+      "type": "resource",
+      "attributes": {
+        "title": "Wykaz produktów leczniczych. Plik w formacie csv.",
+        "format": "csv",
+        "data_date": "2026-11-16",
+        "download_url": "https://api.dane.gov.pl/resources/65520,wykaz-produktow-leczniczych-plik-w-formacie-csv/file",
+        "file_size": 17093885
+      }
+    },
+    {
+      "id": "65521",
+      "type": "resource",
+      "attributes": {
+        "title": "Wykaz produktów leczniczych. Plik w formacie xlsx.",
+        "format": "xlsx",
+        "data_date": "2026-11-16",
+        "download_url": "https://api.dane.gov.pl/resources/65521,wykaz-produktow-leczniczych-plik-w-formacie-xlsx/file",
+        "file_size": 6040474
+      }
+    },
+    {
+      "id": "52518",
+      "type": "resource",
+      "attributes": {
+        "title": "Link do strony Rejestru Produktów Leczniczych na Platformie Rejestrów Medycznych",
+        "format": "html",
+        "data_date": "2026-11-16",
+        "download_url": "",
+        "file_size": null
+      }
+    }
+  ]
+}

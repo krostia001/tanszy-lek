@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/*
+ * Design direction "Szyld apteki": the green cross sign of a Polish pharmacy.
+ * One bold element (the green sign band), everything else quiet: white, hairlines, rows.
+ */
+@theme static {
+  /* Barlow was drawn after highway and shop signage, Semi Condensed is used like lettering on a sign. */
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-sign: "Barlow Semi Condensed", "Barlow", ui-sans-serif, system-ui, sans-serif;
+
+  /* Pharmacy sign green. 600 is the sign itself, 900 is the text colour. */
+  --color-apteka-50: #eaf7ef;
+  --color-apteka-100: #cfeedb;
+  --color-apteka-200: #a0dcb9;
+  --color-apteka-300: #66c590;
+  --color-apteka-400: #2ba865;
+  --color-apteka-500: #00964a;
+  --color-apteka-600: #00843d;
+  --color-apteka-700: #006b32;
+  --color-apteka-800: #0a5530;
+  --color-apteka-900: #0b3d2c;
+  --color-apteka-950: #062419;
+
+  /* Neutrals with a hint of the same green, so greys never look dirty next to the sign. */
+  --color-ink-50: #f5f8f6;
+  --color-ink-100: #e8efea;
+  --color-ink-200: #d3ded7;
+  --color-ink-300: #b5c4bb;
+  --color-ink-400: #8a9b91;
+  --color-ink-500: #6a7a71;
+  --color-ink-600: #55645b;
+  --color-ink-700: #3d4b43;
+  --color-ink-800: #26342c;
+  --color-ink-900: #142219;
+  --color-ink-950: #0b140f;
+}
+
+:root {
+  --ui-primary: var(--ui-color-primary-600);
+  --ui-text: var(--color-apteka-900);
+  --ui-text-highlighted: var(--color-apteka-900);
+  --ui-text-toned: var(--color-ink-700);
+  /* ink-600 instead of the default 500: 6.2:1 contrast on white */
+  --ui-text-muted: var(--color-ink-600);
+  --ui-text-dimmed: var(--color-ink-600);
+  --ui-border: var(--color-ink-200);
+  --ui-radius: 0.375rem;
+}
+
+/* 1rem = 18px. Many visitors are older people reading on a phone. */
+html {
+  font-size: 112.5%;
+}
+
+body {
+  background: #fff;
+  color: var(--ui-text);
+  font-family: var(--font-sans);
+}
+
+/* The only motion on the site: the pharmacy cross switches on like a lit sign. */
+@keyframes sign-on {
+  0% { opacity: 0.2; }
+  35% { opacity: 0.95; }
+  50% { opacity: 0.45; }
+  100% { opacity: 1; }
+}
+
+.sign-on {
+  animation: sign-on 900ms ease-out 150ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sign-on {
+    animation: none;
+  }
+}

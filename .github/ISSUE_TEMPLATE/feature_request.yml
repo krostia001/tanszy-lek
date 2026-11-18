@@ -1,0 +1,19 @@
+name: Propozycja zmiany
+description: Pomysł na nową funkcję lub ulepszenie.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Jaki problem rozwiąże ta zmiana?
+      placeholder: Jako pacjent chcę ..., żeby ...
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proponowane rozwiązanie
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Rozważane alternatywy
