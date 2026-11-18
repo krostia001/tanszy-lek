@@ -45,7 +45,7 @@ Wymagany jest tylko [Docker](https://docs.docker.com/get-docker/).
 docker compose up
 ```
 
-Przy pierwszym uruchomieniu kontener `data` pobiera dane z API dane.gov.pl i buduje bazę (ok. 1 minuty). Potem aplikacja działa pod adresem **http://localhost:3000**.
+Przy pierwszym uruchomieniu Docker buduje obraz (ok. 2 minut), a kontener `data` pobiera dane z API dane.gov.pl i buduje bazę (ok. 15 sekund). Potem aplikacja działa pod adresem **http://localhost:3000**. Kolejne uruchomienia trwają kilka sekund, bo dane zostają w wolumenie Dockera.
 
 Odświeżenie danych do najnowszej wersji:
 
