@@ -5,7 +5,7 @@
 
 Wyszukiwarka tańszych zamienników leków, zbudowana na otwartych danych z [dane.gov.pl](https://dane.gov.pl).
 
-> 🚧 Projekt w budowie (17–22.11.2026). Poniższe instrukcje uruchomienia już działają.
+> Wersja 1.0.0 z 18.11.2026. Co się zmieniło: [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Jaki problem rozwiązujemy
 
@@ -135,9 +135,10 @@ Kod jest udostępniony na licencji [MIT](LICENSE). Rejestr Produktów Leczniczyc
 
 | Identyfikator | Wersja | Status | Autor | Data |
 |---|---|---|---|---|
-| TL-DOC-001 | 1.0 | zatwierdzony | krostia001 | 2026-11-18 |
+| TL-DOC-001 | 1.1 | zatwierdzony | krostia001 | 2026-11-18 |
 
 | Wersja | Data | Autor | Opis zmiany |
 |---|---|---|---|
 | 0.1 | 2026-11-17 | krostia001 | Pierwsza wersja: opis, źródła, uruchomienie |
 | 1.0 | 2026-11-18 | krostia001 | Ceny MZ, wyniki wydajności, dokumentacja, zmierzony czas uruchomienia w Dockerze |
+| 1.1 | 2026-11-18 | krostia001 | Wydanie 1.0.0 zamiast informacji „w budowie” |

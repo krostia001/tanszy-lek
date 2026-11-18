@@ -3,7 +3,7 @@
 | Metryka | |
 |---|---|
 | Identyfikator | TL-DOC-008 |
-| Wersja | 1.0 |
+| Wersja | 1.1 |
 | Status | zatwierdzony |
 | Autor | krostia001 |
 | Data | 2026-11-18 |
@@ -47,11 +47,11 @@ TańszyLek to otwarta wyszukiwarka tańszych odpowiedników leków. Łączy Reje
 | Dzień | Plan | Wykonanie |
 |---|---|---|
 | Wt 17.11 | wybór pomysłu, sprawdzenie danych, szkielet repozytorium, CI | wszystko z planu oraz pobieranie danych, model danych, API, 4 strony, projekt graficzny i testy (praca z wyprzedzeniem) |
-| Śr 18.11 | skrypty pobierania i czyszczenia danych, testy | poprawki prezentacji cen po testach z użytkownikiem, publiczne repozytorium i CI, weryfikacja Dockera, optymalizacja i pomiary, dokumentacja |
+| Śr 18.11 | skrypty pobierania i czyszczenia danych, testy | poprawki prezentacji cen po testach z użytkownikiem, publiczne repozytorium i CI, weryfikacja Dockera, optymalizacja i pomiary, dokumentacja, wydanie v1.0.0 |
 | Cz 19.11 | API i strony | zrobione wcześniej |
 | Pt 20.11 | interfejs, wersja mobilna, Docker, wdrożenie | zrobione wcześniej (wdrożenie: patrz zmiany zakresu) |
 | Sb 21.11 | optymalizacja, pomiary, dokumentacja | zrobione wcześniej |
-| Nd 22.11 | bufor, próba demo | zaplanowane: próba demo, wydanie v1.0.0 |
+| Nd 22.11 | bufor, próba demo | zaplanowane: próba demo |
 
 Projekt wyprzedził harmonogram o ok. 3 dni. Główny powód: wcześnie sprawdzone dane (pierwszego dnia) i automatyczne testy, które pozwalały szybko wprowadzać zmiany.
 
@@ -101,3 +101,4 @@ Projekt indywidualny. Kod i dokumentacja powstały przy pomocy asystenta AI (Cla
 | Wersja | Data | Autor | Opis zmiany |
 |---|---|---|---|
 | 1.0 | 2026-11-18 | krostia001 | Pierwsza wersja raportu |
+| 1.1 | 2026-11-18 | krostia001 | Wydanie v1.0.0 w harmonogramie |

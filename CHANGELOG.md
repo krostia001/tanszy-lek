@@ -6,6 +6,10 @@ Format oparty na [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/), a pro
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-18
+
+Pierwsze publiczne wydanie: wyszukiwarka tańszych odpowiedników leków z cenami, uruchamiana jedną komendą (`docker compose up`), z pełną dokumentacją projektu.
+
 ### Dodano
 
 - Ceny urzędowe opakowań z wykazu leków refundowanych Ministerstwa Zdrowia, połączone z rejestrem po kodzie GTIN.
@@ -36,7 +40,7 @@ Format oparty na [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/), a pro
 - Brakująca cena wyświetla się jako „—”, nigdy jako „NaN zł”.
 - Parser opakowań działa także z końcami linii CRLF (Windows).
 
-## [0.1.0] - 2026-11-17
+## 0.1.0 - 2026-11-17 (wersja robocza, bez wydania)
 
 ### Dodano
 
@@ -53,9 +57,9 @@ Format oparty na [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/), a pro
 
 | Identyfikator | Wersja | Status | Autor | Data |
 |---|---|---|---|---|
-| TL-DOC-004 | 1.0 | zatwierdzony | krostia001 | 2026-11-18 |
+| TL-DOC-004 | 1.1 | zatwierdzony | krostia001 | 2026-11-18 |
 
 Ten dokument sam jest historią zmian projektu; każda wersja projektu dopisuje w nim nową sekcję.
 
-[Unreleased]: ../../compare/v0.1.0...HEAD
-[0.1.0]: ../../releases/tag/v0.1.0
+[Unreleased]: ../../compare/v1.0.0...HEAD
+[1.0.0]: ../../releases/tag/v1.0.0
