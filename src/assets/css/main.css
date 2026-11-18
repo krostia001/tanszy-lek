@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@nuxt/ui";
 
 /*
  * Design direction "Szyld apteki": the green cross sign of a Polish pharmacy.
@@ -35,18 +34,10 @@
   --color-ink-800: #26342c;
   --color-ink-900: #142219;
   --color-ink-950: #0b140f;
-}
 
-:root {
-  --ui-primary: var(--ui-color-primary-600);
-  --ui-text: var(--color-apteka-900);
-  --ui-text-highlighted: var(--color-apteka-900);
-  --ui-text-toned: var(--color-ink-700);
-  /* ink-600 instead of the default 500: 6.2:1 contrast on white */
-  --ui-text-muted: var(--color-ink-600);
-  --ui-text-dimmed: var(--color-ink-600);
-  --ui-border: var(--color-ink-200);
-  --ui-radius: 0.375rem;
+  /* Text roles, used as text-muted and text-toned. Muted is ink-600: 6.2:1 contrast on white. */
+  --color-muted: #55645b;
+  --color-toned: #3d4b43;
 }
 
 /* 1rem = 18px. Many visitors are older people reading on a phone. */
@@ -56,7 +47,7 @@ html {
 
 body {
   background: #fff;
-  color: var(--ui-text);
+  color: var(--color-apteka-900);
   font-family: var(--font-sans);
 }
 

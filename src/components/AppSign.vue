@@ -65,7 +65,7 @@ const { rpl, mz } = useSources()
       <h1 class="max-w-3xl font-sign text-5xl font-bold leading-[0.95] sm:text-7xl">
         Znajdź tańszy odpowiednik leku
       </h1>
-      <p class="mt-5 max-w-2xl text-lg text-apteka-50">
+      <p class="mt-5 max-w-2xl text-lg text-white">
         Wpisz nazwę leku z recepty lub opakowania. Pokażemy leki z tą samą substancją i dawką oraz ile kosztuje każdy z nich.
       </p>
       <DrugSearch
@@ -74,7 +74,7 @@ const { rpl, mz } = useSources()
       />
       <p
         v-if="rpl?.dataDate && mz"
-        class="mt-4 max-w-2xl text-sm text-apteka-100"
+        class="mt-4 max-w-2xl text-sm text-white"
       >
         Ceny urzędowe z wykazu Ministerstwa Zdrowia. Rejestr leków: stan na {{ formatDate(rpl.dataDate) }}.
       </p>

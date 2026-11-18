@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite'
+
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/ui'],
+  modules: ['@nuxt/eslint', '@nuxt/fonts'],
 
   devtools: { enabled: true },
 
@@ -18,14 +20,6 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  ui: {
-    // The site has a single, light theme. Without the color-mode module nothing adds
-    // the "dark" class, so a dark system theme cannot switch components to dark colours.
-    colorMode: false,
-    // Only the components and icons we actually use end up in the bundle.
-    theme: { colors: ['primary', 'neutral', 'error'] },
-  },
-
   // Overridable with NUXT_* environment variables, e.g. NUXT_DUCKDB_PATH.
   runtimeConfig: {
     duckdbPath: 'data/app.duckdb',
@@ -42,11 +36,18 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-11-01',
 
   nitro: {
+    // JS, CSS and other static files are compressed once at build time (gzip and brotli),
+    // so the server sends the smaller file without compressing it on every request.
+    compressPublicAssets: true,
     // API responses are cached. In development keep that cache in memory, so restarting
     // the dev server after `bun run data` always serves fresh data.
     devStorage: {
       cache: { driver: 'memory' },
     },
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 
   eslint: {
@@ -57,16 +58,15 @@ export default defineNuxtConfig({
   },
 
   // Fonts are downloaded at build time and served from our own domain.
+  // Only the weights the design uses are included.
   fonts: {
     defaults: {
-      weights: [400, 500, 700],
       subsets: ['latin', 'latin-ext'],
     },
-  },
-
-  icon: {
-    // Icons are bundled from the installed @iconify-json collection, no runtime API calls.
-    serverBundle: 'local',
-    clientBundle: { scan: true },
+    families: [
+      { name: 'Barlow', weights: [400, 500, 600, 700] },
+      // The headline font is needed for the first paint, so the browser fetches it early.
+      { name: 'Barlow Semi Condensed', weights: [700], preload: true },
+    ],
   },
 })

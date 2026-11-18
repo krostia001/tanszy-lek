@@ -14,11 +14,6 @@ RUN bun install --frozen-lockfile --ignore-scripts
 COPY . .
 RUN bun run build
 
-# --- Runtime dependencies for the data scripts (DuckDB only) ------------------
-FROM base AS prod-deps
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile --production --ignore-scripts
-
 # --- Final image ---------------------------------------------------------------
 FROM base AS runtime
 ENV NODE_ENV=production \
@@ -26,13 +21,14 @@ ENV NODE_ENV=production \
     PORT=3000 \
     NUXT_DUCKDB_PATH=/app/data/app.duckdb
 
-COPY --from=prod-deps /app/node_modules ./node_modules
-COPY --from=build /app/.output ./.output
-COPY package.json ./
-COPY scripts ./scripts
+# --chown while copying: a separate `chown -R` would store every file a second time.
+COPY --from=build --chown=node:node /app/.output ./.output
+COPY --chown=node:node package.json ./
+COPY --chown=node:node scripts ./scripts
 
-# The data volume is mounted at /app/data; run as the unprivileged "node" user.
-RUN mkdir -p data && chown -R node:node /app
+# The data scripts use DuckDB from the server bundle instead of a second copy of
+# node_modules. The data volume is mounted at /app/data.
+RUN ln -s .output/server/node_modules node_modules && mkdir -p data && chown node:node data
 USER node
 
 EXPOSE 3000

@@ -351,10 +351,7 @@ const facts = computed(() => [
             :href="product.leafletUrl"
             class="inline-flex items-center gap-2 font-medium underline underline-offset-4"
           >
-            <UIcon
-              name="i-lucide-file-text"
-              class="size-5"
-            />
+            <IconDocument class="size-5" />
             Ulotka dla pacjenta (PDF)
           </a>
         </li>
@@ -363,10 +360,7 @@ const facts = computed(() => [
             :href="product.spcUrl"
             class="inline-flex items-center gap-2 font-medium underline underline-offset-4"
           >
-            <UIcon
-              name="i-lucide-file-text"
-              class="size-5"
-            />
+            <IconDocument class="size-5" />
             Charakterystyka produktu leczniczego (PDF)
           </a>
         </li>

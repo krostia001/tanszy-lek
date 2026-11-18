@@ -85,8 +85,7 @@ const expanded = computed(() => open.value && results.value.length > 0)
       class="flex items-stretch overflow-hidden rounded-md bg-white text-apteka-900 ring-apteka-950/20 focus-within:ring-4"
       :class="hero ? 'shadow-[0_2px_0_0_var(--color-apteka-800)]' : 'ring-1'"
     >
-      <UIcon
-        name="i-lucide-search"
+      <IconSearch
         class="shrink-0 self-center text-ink-500"
         :class="hero ? 'ms-4 size-6 sm:ms-5 sm:size-7' : 'ms-3 size-5'"
       />

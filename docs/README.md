@@ -29,7 +29,7 @@ Dokumentacja projektu jest prowadzona zgodnie z wytycznymi **ISO 10013** (dokume
 | TL-DOC-004 | [CHANGELOG](../CHANGELOG.md): historia zmian | 0.1 | projekt |
 | TL-DOC-005 | Opis danych i ich jakości | — | planowany |
 | TL-DOC-006 | Architektura | — | planowany |
-| TL-DOC-007 | Wydajność i optymalizacja | — | planowany |
+| TL-DOC-007 | [Wydajność i optymalizacja](wydajnosc.md) | 1.0 | zatwierdzony |
 | TL-DOC-008 | Raport końcowy (rodzina norm ISO 21500) | — | planowany |
 | TL-DOC-009 | Lessons learned (wg PMI) | — | planowany |
 | TL-DOC-010 | [Projekt graficzny](projekt-graficzny.md) | 0.1 | projekt |

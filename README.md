@@ -79,6 +79,8 @@ Konfiguracja (opcjonalna) znajduje się w [`.env.example`](.env.example). Projek
 | `bun run lint` | ESLint (jakość i formatowanie kodu) |
 | `bun run typecheck` | sprawdzanie typów TypeScript |
 | `bun run test` | testy (Vitest) |
+| `bun run bench` | czas odpowiedzi działającej aplikacji (p50, p95), domyślnie `http://localhost:3000` |
+| `bun run lighthouse` | Lighthouse w profilu mobilnym dla głównych stron (wymaga Google Chrome) |
 
 ## Struktura repozytorium
 
@@ -96,19 +98,20 @@ data/             dane pobrane przez skrypty (poza repozytorium)
 - [Nuxt 4](https://nuxt.com) (Vue, renderowanie po stronie serwera)
 - [DuckDB](https://duckdb.org): analityczna baza danych działająca w procesie aplikacji, bez osobnego serwera
 - [Bun](https://bun.sh): instalacja pakietów i skrypty danych
-- [Nuxt UI](https://ui.nuxt.com) i [Tailwind CSS 4](https://tailwindcss.com), fonty Barlow serwowane z własnej domeny
+- [Tailwind CSS 4](https://tailwindcss.com), fonty Barlow serwowane z własnej domeny ([@nuxt/fonts](https://fonts.nuxt.com))
 - [Vitest](https://vitest.dev), [ESLint](https://eslint.org), GitHub Actions, Docker
 
 ## Wydajność
 
-Pierwsze pomiary (lokalnie, build produkcyjny):
+Lighthouse (profil mobilny): **100** w wydajności, dostępności, dobrych praktykach i SEO na wszystkich stronach. Treść pojawia się po 0,8 s na symulowanym wolnym 4G, a strona waży ok. 220 KiB.
 
-| Zapytanie | Pierwsze wywołanie | Z pamięci podręcznej |
+| Zapytanie (build produkcyjny, 10 równoległych klientów) | p50 | p95 |
 |---|---|---|
-| Wyszukiwanie `/api/szukaj?q=atorv` | 20 ms | 3 ms |
-| Lek z odpowiednikami `/api/lek/…` | 55 ms | 3 ms |
+| Wyszukiwanie `/api/szukaj?q=atorv` | 5 ms | 9 ms |
+| Lek z odpowiednikami `/api/lek/…` | 10 ms | 19 ms |
+| Cała strona leku (HTML) | 58 ms | 73 ms |
 
-Zastosowane techniki: ciężka praca (czyszczenie danych, łączenie zbiorów, grupowanie odpowiedników) dzieje się raz, przy budowaniu bazy. Baza DuckDB działa w procesie serwera, tylko do odczytu i z indeksami. Odpowiedzi API są buforowane, a fonty i ikony są dołączane do buildu zamiast pobierania z zewnętrznych serwerów. Szczegółowe pomiary pojawią się w dokumentacji.
+Najważniejsze techniki: ciężka praca (czyszczenie, łączenie zbiorów, grupowanie odpowiedników) dzieje się raz przy budowaniu bazy, DuckDB działa w procesie serwera z indeksami, wyniki zapytań są buforowane, HTML i JSON są kompresowane (brotli), a z interfejsu usunęliśmy bibliotekę komponentów (CSS z 192 kB do 21 kB). Pomiary przed i po, metoda i kompromisy: [`docs/wydajnosc.md`](docs/wydajnosc.md).
 
 ## Dokumentacja
 

@@ -12,20 +12,28 @@ Format oparty na [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/), a pro
 - Model danych: leki dla ludzi z ważnym pozwoleniem, opakowania (bez skreślonych), ceny, grupy odpowiedników (substancja, dawka, postać, droga podania) i indeks wyszukiwania.
 - API: wyszukiwanie z tolerancją literówek (`/api/szukaj`), lek z odpowiednikami (`/api/lek/[slug]`), przykłady oszczędności (`/api/przyklady`), źródła danych (`/api/zrodla`).
 - Strony: główna z wyszukiwarką i przykładami, strona leku, wyniki wyszukiwania, „O projekcie” w formie ulotki, strona błędu 404.
-- Projekt graficzny „Szyld apteki”: Nuxt UI, paleta zieleni aptecznej, fonty Barlow, dostępność dla starszych osób (większy tekst, kontrast, obsługa klawiaturą).
+- Projekt graficzny „Szyld apteki”: paleta zieleni aptecznej, fonty Barlow, dostępność dla starszych osób (większy tekst, kontrast, obsługa klawiaturą).
 - Skrypt `scripts/make-fixtures.ts` i 33 testy na próbkach prawdziwych danych.
+- Pomiary wydajności: `bun run bench` (czas odpowiedzi, p50/p95) i `bun run lighthouse` (Lighthouse, profil mobilny). Wyniki przed i po optymalizacji w `docs/wydajnosc.md`.
+- `robots.txt`.
 
 ### Zmieniono
 
 - Serwis pokazuje cenę urzędową opakowania zamiast dopłaty pacjenta, bez rozbicia na refundację NFZ, i porównuje odpowiedniki po tej cenie (także przykłady na stronie głównej). Nad listą odpowiedników zdanie, o ile taniej jest najtańszy.
+- Usunięto Nuxt UI: używaliśmy tylko dwóch ikon, a biblioteka dodawała 171 kB CSS i ok. 200 kB JavaScriptu. Ikony są wbudowanymi plikami SVG.
+- Kompresja HTML i JSON (brotli/gzip) oraz statycznych plików przy buildzie. Strona waży ok. 220 KiB zamiast 750 KiB, Lighthouse 100 we wszystkich kategoriach.
+- Tylko używane grubości fontów; font nagłówka ładowany z wyprzedzeniem.
+- Biały tekst na zielonym nagłówku (wcześniej kontrast 4,36:1 i 3,87:1, poniżej normy WCAG AA).
+- Obraz Dockera 623 MB zamiast 1,01 GB: jedna kopia DuckDB i `COPY --chown` zamiast `chown -R`.
 - Pamięć podręczna API w trybie deweloperskim trzymana w pamięci, więc po `bun run data` restart serwera zawsze pokazuje świeże dane.
+- Serwis ma tylko jasny motyw.
+- Lint: ESLint z modułu `@nuxt/eslint` zamiast Biome (lepsza obsługa plików `.vue`). TypeScript 6, bo TypeScript 7 nie działa jeszcze z typescript-eslint.
 
 ### Naprawiono
 
 - Przeglądarka nie przechowuje już odpowiedzi API przez dobę (`cache-control: no-cache`). Wcześniej po aktualizacji danych strona główna mogła pokazać stare dane, a ceny jako „NaN zł”. Wyniki zapytań są nadal buforowane po stronie serwera (`defineCachedFunction`).
 - Brakująca cena wyświetla się jako „—”, nigdy jako „NaN zł”.
-- Serwis ma tylko jasny motyw. Ciemny motyw systemu nie zmienia już kolorów przycisków.
-- Lint: ESLint z modułu `@nuxt/eslint` zamiast Biome (lepsza obsługa plików `.vue`). TypeScript 6, bo TypeScript 7 nie działa jeszcze z typescript-eslint.
+- Parser opakowań działa także z końcami linii CRLF (Windows).
 
 ## [0.1.0] - 2026-11-17
 
