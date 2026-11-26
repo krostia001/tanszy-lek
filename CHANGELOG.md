@@ -6,6 +6,10 @@ Format oparty na [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/), a pro
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-26
+
+Porównanie ceny za tabletkę: serwis znajduje tańszą opcję także w opakowaniu innej wielkości, np. 90 tabletek zamiast 30. Do tego udostępnianie linku do leku.
+
 ### Dodano
 
 - Cena za tabletkę (lub kapsułkę) przy cenie opakowania.
@@ -65,9 +69,10 @@ Pierwsze publiczne wydanie: wyszukiwarka tańszych odpowiedników leków z cenam
 
 | Identyfikator | Wersja | Status | Autor | Data |
 |---|---|---|---|---|
-| TL-DOC-004 | 1.2 | zatwierdzony | krostia001 | 2026-11-26 |
+| TL-DOC-004 | 1.3 | zatwierdzony | krostia001 | 2026-11-26 |
 
 Ten dokument sam jest historią zmian projektu; każda wersja projektu dopisuje w nim nową sekcję.
 
-[Unreleased]: ../../compare/v1.0.0...HEAD
+[Unreleased]: ../../compare/v1.1.0...HEAD
+[1.1.0]: ../../releases/tag/v1.1.0
 [1.0.0]: ../../releases/tag/v1.0.0

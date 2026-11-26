@@ -1,6 +1,6 @@
 {
   "name": "tanszy-lek",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Wyszukiwarka tańszych zamienników leków oparta na otwartych danych z dane.gov.pl",
   "license": "MIT",
   "type": "module",
