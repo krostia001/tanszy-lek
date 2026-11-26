@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { DoseUnit } from '#shared/utils/units'
+
 const route = useRoute()
 const slug = computed(() => String(route.params.slug))
 
@@ -20,9 +22,53 @@ useSeoMeta({
   description: () => `Odpowiedniki leku ${title.value} z tą samą substancją i dawką oraz ich ceny w aptece.`,
 })
 
-// Default package: the first one with a price, otherwise the first one.
-const selectedGtin = ref(packs.value.find(pack => pack.price !== null)?.gtin ?? packs.value[0]?.gtin)
+// The chosen package is kept in the address (?opakowanie=GTIN), so a shared link opens the same package.
+// Without it: the first package with a price, otherwise the first one.
+const router = useRouter()
+const defaultGtin = computed(() => packs.value.find(pack => pack.price !== null)?.gtin ?? packs.value[0]?.gtin)
+const selectedGtin = computed(() => {
+  const wanted = route.query.opakowanie
+  return packs.value.some(pack => pack.gtin === wanted) ? wanted as string : defaultGtin.value
+})
 const selected = computed(() => packs.value.find(pack => pack.gtin === selectedGtin.value))
+
+function choosePack(gtin: string) {
+  router.replace({ query: { ...route.query, opakowanie: gtin } })
+}
+
+const selectedUnits = computed(() => (selected.value ? doseUnits(selected.value.size) : null))
+const selectedUnitPrice = computed(() => (selected.value ? unitPrice(selected.value.price, selected.value.size) : null))
+
+interface UnitOffer extends SubstituteOffer {
+  /** The same medicine as on this page, in another package size. */
+  own: boolean
+  unit: DoseUnit
+  unitPrice: number
+}
+
+// Other package sizes that are cheaper per tablet: substitutes and this medicine itself,
+// e.g. 90 tablets instead of 30. Same-size packages are compared by the package price instead.
+// When the chosen package has no price, all priced sizes are listed from the lowest price per tablet.
+const perUnit = computed<UnitOffer[]>(() => {
+  const mine = selectedUnitPrice.value
+  const count = selectedUnits.value?.count
+  if (!count) return []
+
+  const ownPacks = packs.value.map(pack => ({ ...product.value, ...pack, own: true }))
+  const substitutes = data.value!.substitutes.map(offer => ({ ...offer, own: false }))
+
+  return [...ownPacks, ...substitutes]
+    .flatMap((offer) => {
+      const units = doseUnits(offer.size)
+      if (offer.price === null || !units || units.count === count) return []
+      const price = offer.price / units.count
+      // only offers that save at least 1 grosz on the visitor's number of tablets
+      return mine === null || difference(mine * count, price * count) > 0
+        ? [{ ...offer, unit: units.unit, unitPrice: price }]
+        : []
+    })
+    .sort((a, b) => a.unitPrice - b.unitPrice || a.name.localeCompare(b.name, 'pl'))
+})
 
 const offers = computed(() => {
   const all = data.value!.substitutes
@@ -33,8 +79,10 @@ const offers = computed(() => {
   const cheaper = mine === null ? priced : priced.filter(offer => offer.price! < mine)
   const notCheaper = mine === null ? [] : priced.filter(offer => offer.price! >= mine)
   const unpriced = uniqueBy(samePack.filter(offer => offer.price === null), offer => offer.name.toLowerCase())
+  // names already listed as cheaper per tablet are not repeated here
+  const cheaperPerUnit = new Set(perUnit.value.map(offer => offer.name.toLowerCase()))
   const otherPacks = uniqueBy(
-    all.filter(offer => offer.packCount !== selected.value?.packCount),
+    all.filter(offer => offer.packCount !== selected.value?.packCount && !cheaperPerUnit.has(offer.name.toLowerCase())),
     offer => offer.name.toLowerCase(),
   )
   const best = cheaper[0]?.price ?? null
@@ -44,12 +92,72 @@ const offers = computed(() => {
 // Long lists are cut to the first few rows until the visitor asks for more.
 const SHORT_LIST = 5
 const showAllCheaper = ref(false)
-watch(selectedGtin, () => (showAllCheaper.value = false))
+const showAllPerUnit = ref(false)
+watch(selectedGtin, () => {
+  showAllCheaper.value = false
+  showAllPerUnit.value = false
+})
 const cheapest = computed(() => offers.value.cheaper[0])
+const cheapestPerUnit = computed(() => perUnit.value[0])
+const visiblePerUnit = computed(() =>
+  showAllPerUnit.value ? perUnit.value : perUnit.value.slice(0, SHORT_LIST),
+)
 
-/** Difference between two prices, rounded to grosze (avoids 10.909999 from float maths). */
+// Share: the system share sheet on phones, a copied link elsewhere.
+const shareStatus = ref('')
+let shareStatusTimer: ReturnType<typeof setTimeout> | undefined
+
+async function share() {
+  const url = window.location.href
+  if (window.matchMedia('(pointer: coarse)').matches && 'share' in navigator) {
+    try {
+      await navigator.share({ title: `${title.value} · TańszyLek`, text: `Tańsze odpowiedniki leku ${title.value}`, url })
+    }
+    catch {
+      // the visitor closed the share sheet
+    }
+    return
+  }
+  const copied = await navigator.clipboard?.writeText(url).then(() => true, () => false) || copyWithSelection(url)
+  shareStatus.value = copied
+    ? 'Link skopiowany. Możesz go wkleić w wiadomości.'
+    : 'Nie udało się skopiować. Skopiuj adres z paska przeglądarki.'
+  clearTimeout(shareStatusTimer)
+  shareStatusTimer = setTimeout(() => (shareStatus.value = ''), 5000)
+}
+
+/**
+ * Older way of copying, for pages opened without HTTPS (e.g. http://192.168.x.x in a local network),
+ * where navigator.clipboard does not exist, and for browsers that block it.
+ */
+function copyWithSelection(text: string): boolean {
+  const field = document.createElement('textarea')
+  field.value = text
+  field.setAttribute('readonly', '')
+  field.style.position = 'fixed'
+  field.style.opacity = '0'
+  document.body.append(field)
+  field.select()
+  try {
+    return document.execCommand('copy')
+  }
+  catch {
+    return false
+  }
+  finally {
+    field.remove()
+  }
+}
+onBeforeUnmount(() => clearTimeout(shareStatusTimer))
+
+/** Rounds to grosze (avoids 10.909999 from float maths). */
+function roundGrosze(value: number): number {
+  return Math.round(value * 100) / 100
+}
+
+/** Difference between two prices, rounded to grosze. */
 function difference(a: number, b: number): number {
-  return Math.round((a - b) * 100) / 100
+  return roundGrosze(a - b)
 }
 
 const visibleCheaper = computed(() =>
@@ -96,6 +204,20 @@ const facts = computed(() => [
           class="rounded-sm bg-ink-100 px-2 py-0.5 text-base"
         >import równoległy</span>
       </p>
+      <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-md border-2 border-ink-200 bg-white px-4 py-2 font-medium hover:border-ink-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-apteka-600"
+          @click="share"
+        >
+          <IconShare class="size-5" />
+          Udostępnij
+        </button>
+        <span
+          role="status"
+          class="font-medium text-apteka-700"
+        >{{ shareStatus }}</span>
+      </div>
     </header>
 
     <section
@@ -122,7 +244,7 @@ const facts = computed(() => [
           :aria-checked="pack.gtin === selectedGtin"
           class="rounded-md border-2 px-4 py-2 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-apteka-600"
           :class="pack.gtin === selectedGtin ? 'border-apteka-600 bg-apteka-50 font-semibold' : 'border-ink-200 hover:border-ink-400'"
-          @click="selectedGtin = pack.gtin"
+          @click="choosePack(pack.gtin)"
         >
           {{ pack.size }}
         </button>
@@ -137,6 +259,12 @@ const facts = computed(() => [
         </p>
         <p class="font-sign text-5xl font-bold tabular-nums sm:text-6xl">
           {{ formatPln(selected.price) }}
+        </p>
+        <p
+          v-if="selectedUnitPrice !== null && selectedUnits"
+          class="mt-1 text-lg font-semibold tabular-nums"
+        >
+          {{ formatPln(selectedUnitPrice) }} za {{ oneUnit(selectedUnits.unit) }}
         </p>
         <p
           v-if="mz?.edition"
@@ -278,6 +406,69 @@ const facts = computed(() => [
           </li>
         </ul>
       </details>
+
+      <section
+        v-if="cheapestPerUnit && selectedUnits"
+        aria-labelledby="za-sztuke"
+        class="mt-10"
+      >
+        <h3
+          id="za-sztuke"
+          class="font-sign text-2xl font-bold sm:text-3xl"
+        >
+          {{ selected?.price == null ? 'Ceny za' : 'Taniej za' }} {{ oneUnit(selectedUnits.unit) }} w innym opakowaniu
+        </h3>
+        <p class="mt-3 text-lg">
+          Najtaniej wychodzi
+          <strong>{{ cheapestPerUnit.own ? 'ten sam lek' : nameWithStrength(cheapestPerUnit.name, cheapestPerUnit.strength) }}</strong>
+          w opakowaniu {{ cheapestPerUnit.size }} za <span class="tabular-nums">{{ formatPln(cheapestPerUnit.price!) }}</span>:
+          <strong class="tabular-nums">{{ formatPln(cheapestPerUnit.unitPrice) }} za {{ oneUnit(cheapestPerUnit.unit) }}</strong>.
+          <template v-if="selected?.price != null">
+            W przeliczeniu na {{ countUnits(selectedUnits.count, selectedUnits.unit) }} to
+            <strong class="tabular-nums text-apteka-700">{{ formatPln(roundGrosze(cheapestPerUnit.unitPrice * selectedUnits.count)) }}</strong>
+            zamiast <span class="tabular-nums">{{ formatPln(selected.price) }}</span>.
+          </template>
+        </p>
+        <ul class="mt-5 divide-y divide-ink-200 border-y border-ink-200">
+          <li
+            v-for="offer in visiblePerUnit"
+            :key="`${offer.slug}-${offer.size}-${offer.price}`"
+            class="grid grid-cols-[1fr_auto] items-center gap-x-6 py-4"
+            :class="offer.unitPrice === cheapestPerUnit.unitPrice ? '-mx-4 bg-apteka-50 px-4 sm:-mx-5 sm:px-5' : ''"
+          >
+            <div>
+              <span
+                v-if="offer.own"
+                class="text-lg font-semibold"
+              >{{ nameWithStrength(offer.name, offer.strength) }}</span>
+              <NuxtLink
+                v-else
+                :to="`/lek/${offer.slug}`"
+                class="text-lg font-semibold underline-offset-4 hover:underline"
+              >{{ nameWithStrength(offer.name, offer.strength) }}</NuxtLink>
+              <span
+                v-if="offer.own"
+                class="ml-2 rounded-sm bg-apteka-100 px-2 py-0.5 align-middle text-sm font-medium"
+              >ten sam lek</span>
+              <span class="block text-sm text-muted">
+                {{ offer.size }} za {{ formatPln(offer.price!) }}<template v-if="offer.holder">, {{ offer.holder }}</template><template v-if="offer.parallelImport">, import równoległy</template>
+              </span>
+            </div>
+            <div class="text-right tabular-nums">
+              <span class="block text-2xl font-bold">{{ formatPln(offer.unitPrice) }}</span>
+              <span class="text-sm text-muted">za {{ oneUnit(offer.unit) }}</span>
+            </div>
+          </li>
+        </ul>
+        <button
+          v-if="perUnit.length > SHORT_LIST && !showAllPerUnit"
+          type="button"
+          class="mt-4 rounded-md border-2 border-apteka-600 bg-white px-5 py-2.5 font-semibold text-apteka-900 hover:bg-apteka-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-apteka-600"
+          @click="showAllPerUnit = true"
+        >
+          Pokaż wszystkie opakowania ({{ perUnit.length }})
+        </button>
+      </section>
 
       <details
         v-if="offers.otherPacks.length"

@@ -44,7 +44,7 @@ const { public: { repoUrl } } = useRuntimeConfig()
       <section>
         <h2>3. Jak stosować</h2>
         <p>
-          Wpisz nazwę leku z recepty lub opakowania i wybierz go z listy. Na stronie leku wybierz wielkość opakowania. Zobaczysz cenę i tańsze odpowiedniki w tym samym opakowaniu. W aptece poproś o wybrany odpowiednik. Zgodnie z art. 44 ustawy o refundacji farmaceuta ma obowiązek poinformować cię o tańszym leku.
+          Wpisz nazwę leku z recepty lub opakowania i wybierz go z listy. Na stronie leku wybierz wielkość opakowania. Zobaczysz cenę, tańsze odpowiedniki w tym samym opakowaniu, a niżej opakowania innej wielkości, które wychodzą taniej za tabletkę. W aptece poproś o wybrany odpowiednik. Zgodnie z art. 44 ustawy o refundacji farmaceuta ma obowiązek poinformować cię o tańszym leku.
         </p>
         <p>
           <strong>Skąd ceny.</strong> Pokazujemy ceny urzędowe opakowań z wykazu Ministerstwa Zdrowia. Zmieniają się z każdym nowym obwieszczeniem.
@@ -78,7 +78,7 @@ const { public: { repoUrl } } = useRuntimeConfig()
           Dwa leki uznajemy za odpowiedniki, gdy mają tę samą substancję czynną (nazwę międzynarodową), tę samą dawkę, tę samą drogę podania i postać, która nie ma znaczenia klinicznego. Tabletki, tabletki powlekane i kapsułki traktujemy jako tę samą postać. Tabletki o przedłużonym uwalnianiu, plastry czy syropy porównujemy tylko z taką samą postacią.
         </p>
         <p>
-          Ceny porównujemy dla opakowań z tą samą liczbą sztuk.
+          Opakowania tej samej wielkości porównujemy po cenie opakowania, a opakowania innej wielkości po cenie za tabletkę lub kapsułkę. Dla syropów, zastrzyków i inhalatorów porównujemy tylko opakowania tej samej wielkości.
         </p>
         <p>
           Pomijamy leki weterynaryjne, leki z wygasłym pozwoleniem i opakowania skreślone z rejestru.

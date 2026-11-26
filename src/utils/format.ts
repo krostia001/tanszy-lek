@@ -1,3 +1,5 @@
+import type { DoseUnit } from '../shared/utils/units'
+
 const pln = new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' })
 const pluralRules = new Intl.PluralRules('pl-PL')
 
@@ -17,6 +19,23 @@ export function plural(count: number, [one, few, many]: [string, string, string]
   const form = pluralRules.select(count)
   const word = form === 'one' ? one : form === 'few' ? few : many
   return `${count} ${word}`
+}
+
+/** Word forms after "za" and "na" (accusative): za tabletkę, na 3 tabletki, na 30 tabletek. */
+const UNIT_WORDS: Record<DoseUnit, [string, string, string]> = {
+  tabl: ['tabletkę', 'tabletki', 'tabletek'],
+  kaps: ['kapsułkę', 'kapsułki', 'kapsułek'],
+  szt: ['sztukę', 'sztuki', 'sztuk'],
+}
+
+/** "tabl" -> "tabletkę", as in "0,28 zł za tabletkę". */
+export function oneUnit(unit: DoseUnit): string {
+  return UNIT_WORDS[unit][0]
+}
+
+/** (30, "tabl") -> "30 tabletek", as in "w przeliczeniu na 30 tabletek". */
+export function countUnits(count: number, unit: DoseUnit): string {
+  return plural(count, UNIT_WORDS[unit])
 }
 
 const normalize = (text: string) => text.toLowerCase().replace(/\s+/g, '').replace('mcg', 'µg')

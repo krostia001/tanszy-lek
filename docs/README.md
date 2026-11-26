@@ -3,10 +3,10 @@
 | Metryka | |
 |---|---|
 | Identyfikator | TL-DOC-000 |
-| Wersja | 1.1 |
+| Wersja | 1.2 |
 | Status | zatwierdzony |
 | Autor | krostia001 |
-| Data | 2026-11-18 |
+| Data | 2026-11-26 |
 
 ## Zasady kontroli dokumentów
 
@@ -23,12 +23,12 @@ Dokumentacja projektu jest prowadzona zgodnie z wytycznymi **ISO 10013** (dokume
 
 | ID | Dokument | Wersja | Status |
 |---|---|---|---|
-| TL-DOC-000 | [Rejestr dokumentów](README.md) (ten plik) | 1.1 | zatwierdzony |
-| TL-DOC-001 | [README](../README.md): opis projektu, źródła danych, uruchomienie | 1.1 | zatwierdzony |
+| TL-DOC-000 | [Rejestr dokumentów](README.md) (ten plik) | 1.2 | zatwierdzony |
+| TL-DOC-001 | [README](../README.md): opis projektu, źródła danych, uruchomienie | 1.2 | zatwierdzony |
 | TL-DOC-002 | [CONTRIBUTING](../CONTRIBUTING.md): zasady współtworzenia | 1.0 | zatwierdzony |
 | TL-DOC-003 | [CODE_OF_CONDUCT](../CODE_OF_CONDUCT.md): kodeks postępowania | 1.0 | zatwierdzony |
-| TL-DOC-004 | [CHANGELOG](../CHANGELOG.md): historia zmian | 1.1 | zatwierdzony |
-| TL-DOC-005 | [Opis danych i ich jakości](dane.md) | 1.0 | zatwierdzony |
+| TL-DOC-004 | [CHANGELOG](../CHANGELOG.md): historia zmian | 1.2 | zatwierdzony |
+| TL-DOC-005 | [Opis danych i ich jakości](dane.md) | 1.1 | zatwierdzony |
 | TL-DOC-006 | [Architektura](architektura.md) | 1.0 | zatwierdzony |
 | TL-DOC-007 | [Wydajność i optymalizacja](wydajnosc.md) | 1.0 | zatwierdzony |
 | TL-DOC-008 | [Raport końcowy](raport-koncowy.md) (szkielet ISO 21513) | 1.1 | zatwierdzony |
@@ -44,3 +44,4 @@ Wzór nowego dokumentu: [szablon-dokumentu.md](szablon-dokumentu.md).
 | 0.1 | 2026-11-17 | krostia001 | Utworzenie rejestru i zasad kontroli dokumentów |
 | 1.0 | 2026-11-18 | krostia001 | Dodano dokumenty TL-DOC-005, 006, 008, 009; metryka w plikach standardowych; zatwierdzenie wszystkich dokumentów |
 | 1.1 | 2026-11-18 | krostia001 | Wydanie v1.0.0: nowe wersje TL-DOC-001, 004 i 008 |
+| 1.2 | 2026-11-26 | krostia001 | Porównanie ceny za tabletkę: nowe wersje TL-DOC-001, 004 i 005 |

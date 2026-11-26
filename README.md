@@ -18,7 +18,9 @@ TańszyLek pozwala wpisać nazwę leku i zobaczyć jego odpowiedniki (ta sama su
 ## Co potrafi
 
 - **Wyszukiwanie z podpowiedziami** po nazwie leku lub substancji czynnej, odporne na literówki (np. „atorwasterol”).
-- **Strona leku**: cena wybranego opakowania, tańsze odpowiedniki posortowane od najtańszego, ulotka i charakterystyka produktu.
+- **Strona leku**: cena wybranego opakowania i cena za tabletkę, tańsze odpowiedniki posortowane od najtańszego, ulotka i charakterystyka produktu.
+- **Porównanie ceny za tabletkę**: odpowiedniki i ten sam lek w innej wielkości opakowania (np. 90 tabletek zamiast 30), jeśli wychodzą taniej.
+- **Udostępnianie**: link do leku z wybranym opakowaniem, np. żeby wysłać tańszą opcję bliskiej osobie.
 - **Przykłady oszczędności** na stronie głównej, liczone automatycznie z aktualnych danych.
 - **Strona „O projekcie”** napisana jak ulotka: źródła danych, sposób wyboru odpowiedników, ograniczenia.
 
@@ -135,10 +137,11 @@ Kod jest udostępniony na licencji [MIT](LICENSE). Rejestr Produktów Leczniczyc
 
 | Identyfikator | Wersja | Status | Autor | Data |
 |---|---|---|---|---|
-| TL-DOC-001 | 1.1 | zatwierdzony | krostia001 | 2026-11-18 |
+| TL-DOC-001 | 1.2 | zatwierdzony | krostia001 | 2026-11-26 |
 
 | Wersja | Data | Autor | Opis zmiany |
 |---|---|---|---|
 | 0.1 | 2026-11-17 | krostia001 | Pierwsza wersja: opis, źródła, uruchomienie |
 | 1.0 | 2026-11-18 | krostia001 | Ceny MZ, wyniki wydajności, dokumentacja, zmierzony czas uruchomienia w Dockerze |
 | 1.1 | 2026-11-18 | krostia001 | Wydanie 1.0.0 zamiast informacji „w budowie” |
+| 1.2 | 2026-11-26 | krostia001 | Porównanie ceny za tabletkę i udostępnianie w opisie funkcji |

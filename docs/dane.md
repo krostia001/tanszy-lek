@@ -3,10 +3,10 @@
 | Metryka | |
 |---|---|
 | Identyfikator | TL-DOC-005 |
-| Wersja | 1.0 |
+| Wersja | 1.1 |
 | Status | zatwierdzony |
 | Autor | krostia001 |
-| Data | 2026-11-18 |
+| Data | 2026-11-26 |
 
 ## Cel dokumentu
 
@@ -74,7 +74,12 @@ Lek dostaje klucz grupy: substancja czynna (nazwa międzynarodowa), dawka po uje
 
 Tabletki, tabletki powlekane, tabletki drażowane i kapsułki traktujemy jako tę samą postać. Między nimi nie ma różnicy o znaczeniu klinicznym. Postacie o zmodyfikowanym uwalnianiu, kapsułki miękkie, syropy i inne porównujemy tylko z identyczną postacią. Wynik: 7 151 grup, a 9 162 z 14 946 pozycji wyszukiwarki ma co najmniej jeden odpowiednik.
 
-Ceny porównujemy tylko dla opakowań z tą samą liczbą sztuk.
+Ceny porównujemy na dwa sposoby:
+
+- **Opakowania tej samej wielkości** porównujemy po cenie opakowania. Tańszą opcję tej samej wielkości ma 1 827 z 3 649 opakowań z ceną (50%).
+- **Opakowania innej wielkości** porównujemy po cenie za tabletkę: cena opakowania podzielona przez liczbę tabletek, kapsułek lub sztuk z początku opisu opakowania („28 tabl. (2 x 14)” to 28 tabletek). Bierzemy pod uwagę odpowiedniki i ten sam lek, np. 90 tabletek zamiast 30. Razem z tym porównaniem tańszą opcję ma 2 364 opakowania (65%), czyli o 537 więcej.
+
+Ceny za sztukę nie liczymy dla syropów, zastrzyków, inhalatorów i saszetek (ich dawka zależy od objętości lub masy) ani dla opakowań z różnymi dawkami w środku („3 tabl. 100 IR + 28 tabl. 300 IR”). Liczenie robi funkcja `doseUnits` w `src/shared/utils/units.ts`, sprawdzona testami na prawdziwych zapisach z rejestru.
 
 ## Kontrola jakości
 
@@ -95,3 +100,4 @@ Ceny porównujemy tylko dla opakowań z tą samą liczbą sztuk.
 | Wersja | Data | Autor | Opis zmiany |
 |---|---|---|---|
 | 1.0 | 2026-11-18 | krostia001 | Pierwsza wersja |
+| 1.1 | 2026-11-26 | krostia001 | Porównanie ceny za tabletkę w opakowaniach innej wielkości |

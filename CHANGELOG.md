@@ -6,6 +6,14 @@ Format oparty na [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/), a pro
 
 ## [Unreleased]
 
+### Dodano
+
+- Cena za tabletkę (lub kapsułkę) przy cenie opakowania.
+- Sekcja „Taniej za tabletkę w innym opakowaniu” na stronie leku: odpowiedniki i ten sam lek w innej wielkości opakowania, posortowane od najniższej ceny za tabletkę, z przeliczeniem na liczbę tabletek w wybranym opakowaniu. Dzięki temu tańszą opcję ma 2 364 z 3 649 opakowań z ceną (65%), wcześniej 1 827 (50%). Syropy, zastrzyki, inhalatory i opakowania z różnymi dawkami pomijamy, bo cena za sztukę nic o nich nie mówi.
+- Przycisk „Udostępnij” na stronie leku: na telefonie otwiera systemowe udostępnianie, na komputerze kopiuje link.
+- Wybrane opakowanie jest zapisane w adresie strony (`?opakowanie=GTIN`), więc udostępniony link otwiera to samo opakowanie.
+- 15 testów: liczenie tabletek w opakowaniu na prawdziwych zapisach z rejestru i polskie formy słów (48 testów razem).
+
 ## [1.0.0] - 2026-11-18
 
 Pierwsze publiczne wydanie: wyszukiwarka tańszych odpowiedników leków z cenami, uruchamiana jedną komendą (`docker compose up`), z pełną dokumentacją projektu.
@@ -57,7 +65,7 @@ Pierwsze publiczne wydanie: wyszukiwarka tańszych odpowiedników leków z cenam
 
 | Identyfikator | Wersja | Status | Autor | Data |
 |---|---|---|---|---|
-| TL-DOC-004 | 1.1 | zatwierdzony | krostia001 | 2026-11-18 |
+| TL-DOC-004 | 1.2 | zatwierdzony | krostia001 | 2026-11-26 |
 
 Ten dokument sam jest historią zmian projektu; każda wersja projektu dopisuje w nim nową sekcję.
 
